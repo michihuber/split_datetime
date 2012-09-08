@@ -1,7 +1,7 @@
 module SplitDatetime
   module Accessors
     def accepts_split_datetime_for(*attrs)
-      opts = { default: lambda { Time.now }, format: "%F" }
+      opts = { format: "%F", default: lambda { Time.now.change(min: 0) } }
 
       if attrs.last.class == Hash
         custom = attrs.delete_at(-1)

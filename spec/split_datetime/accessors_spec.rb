@@ -18,9 +18,9 @@ describe SplitDatetime::Accessors do
     end
 
     it "sets the default time to Time.now" do
-      now = Time.now
+      now = Time.new(2222, 12, 22, 13, 44)
       Time.stub(:now) { now }
-      model.starts_at.should == now
+      model.starts_at.should == now.change(min: 0)
     end
 
     it "allows setting the default value through options" do
