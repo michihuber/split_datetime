@@ -36,7 +36,7 @@ Add your js datepicker and you're good to go. (Of course, this also works with s
 
 ```ruby
 accepts_split_datetime_for :starts_at, default: lambda { Time.now.change(min: 0) + 2.weeks }
-accepts_split_datetime_for :starts_at, default: lambda { nil }
+accepts_split_datetime_for :starts_at, default: lambda { Time.now }
 ```
 
 You can also specify the date format for the view:
