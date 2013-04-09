@@ -32,6 +32,7 @@ describe SplitDatetime::Accessors do
 
   describe "split datetime methods" do
     before { model.starts_at = Time.new(2222, 12, 22, 13, 44, 0) }
+
     describe "#starts_at_date" do
       it "returns the model's starts_at date as string" do
         model.starts_at_date.should == "2222-12-22"
@@ -52,6 +53,11 @@ describe SplitDatetime::Accessors do
         model.starts_at_date = "1111-01-01"
         model.starts_at.should == Time.new(1111, 1, 1, 13, 44, 0)
       end
+
+      it "uses the default if the string is empty" do
+        model.starts_at_date = ""
+        model.starts_at.should == Time.new(2222, 12, 22, 13, 44, 0)
+      end
     end
 
     describe "#starts_at_hour" do
@@ -63,6 +69,11 @@ describe SplitDatetime::Accessors do
         model.starts_at_hour = 11
         model.starts_at.should == Time.new(2222, 12, 22, 11, 44, 0)
       end
+
+      it "uses the default if the string is empty" do
+        model.starts_at_hour = ""
+        model.starts_at.should == Time.new(2222, 12, 22, 13, 44, 0)
+      end
     end
 
     describe "#starts_at_min" do
@@ -73,6 +84,11 @@ describe SplitDatetime::Accessors do
       it "sets the minute of #starts_at" do
         model.starts_at_min = 55
         model.starts_at.should == Time.new(2222, 12, 22, 13, 55, 0)
+      end
+
+      it "uses the default if the string is empty" do
+        model.starts_at_min = ""
+        model.starts_at.should == Time.new(2222, 12, 22, 13, 44, 0)
       end
     end
   end

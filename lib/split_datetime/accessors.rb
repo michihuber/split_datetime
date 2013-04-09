@@ -16,15 +16,18 @@ module SplitDatetime
         end
 
         define_method("#{attr}_date=") do |date|
+          return unless date.present?
           date = Date.parse(date.to_s)
           self.send("#{attr}=", self.send(attr).change(year: date.year, month: date.month, day: date.day))
         end
 
         define_method("#{attr}_hour=") do |hour|
+          return unless hour.present?
           self.send("#{attr}=", self.send(attr).change(hour: hour, min: self.send(attr).min))
         end
 
         define_method("#{attr}_min=") do |min|
+          return unless min.present?
           self.send("#{attr}=", self.send(attr).change(min: min))
         end
 
